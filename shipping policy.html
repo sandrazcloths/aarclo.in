@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shipping Policy</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f2ee;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .policy-card {
+      background-color: #fff;
+      max-width: 700px;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      text-align: left;
+      line-height: 1.8;
+      color: #444;
+      position: relative;
+    }
+
+    .policy-card h1 {
+      font-size: 30px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+
+    .policy-card p {
+      font-size: 18px;
+      margin: 0 0 40px 0;
+    }
+
+    .policy-card span {
+      font-weight: 600;
+      color: #111;
+    }
+
+    /* Back button style */
+    .back-btn {
+      display: block;
+      width: fit-content;
+      margin: 20px auto 0; /* pushes it to the bottom center */
+      padding: 12px 24px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 16px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .back-btn:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="policy-card">
+    <h1>🚚 Shipping Policy</h1>
+    <p>
+      ✅ Free shipping across India.<br>
+      📦 Orders processed in <span>2–3 business days</span>.<br>
+      🚚 Delivery in <span>5–7 business days</span> depending on your location.<br>
+      🔗 Tracking details will be shared via email/SMS once shipped.
+    </p>
+
+    <!-- Back button at bottom -->
+    <a href="javascript:history.back()" class="back-btn">⬅ Back</a>
+  </div>
+
+</body>
+</html>

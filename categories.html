@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Categories</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .categories-title {
+      text-align: center;
+      font-size: 36px;
+      font-weight: bold;
+      display: block;
+      background: black;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 8px;
+      margin: 50px auto 20px auto;
+    }
+
+    .categories-subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: #555;
+      font-weight: 400;
+      margin-bottom: 40px;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    .categories-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .category-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      max-width: 300px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .category-card .card-title {
+      font-size: 20px;
+      margin: 15px 0 10px 0;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .category-card button {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+    }
+
+    .category-card button:hover {
+      background-color: #ffcc00;
+      color: black;
+      transform: translateY(-2px);
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .category-card {
+        max-width: 45%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .category-card {
+        max-width: 90%;
+      }
+    }
+    .offer-marquee {
+      width: 100%;
+      background-color: #ffcc00;
+      overflow: hidden;
+      white-space: nowrap;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      color: #000;
+    }
+    .offer-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 15s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .navbar-brand {
+  font-size: 60px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar i {
+  font-size: 30px;
+  margin: 0 10px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.navbar i:hover {
+  color: #ffcc00;
+}
+
+.navbar .d-flex a {
+  padding: 5px 8px;
+}
+
+.nav-link.active {
+  color: #ffcc00 !important;
+  font-weight: bold;
+}
+
+/* Responsive Navbar */
+@media (max-width: 992px) {
+  .navbar-brand {
+    font-size: 42px;
+  }
+  .navbar i {
+    font-size: 24px;
+    margin: 0 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 32px;
+  }
+  .navbar i {
+    font-size: 18px;
+  }
+  .offer-marquee {
+    font-size: 12px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 26px;
+  }
+  .navbar i {
+    font-size: 20px;
+  }
+}
+
+    #gsearch {
+  transition: width 0.4s ease, opacity 0.3s ease;
+  border-radius: 5px;
+  padding: 6px 10px;
+  font-size: 15px;
+  height: 35px;
+  background: white;
+  color: black;
+  border: 1px solid #ccc;
+  max-width: 200px;
+  display: none;
+}
+#gsearch.show {
+  width: 200px;
+  opacity: 1;
+  pointer-events: auto;
+  display: flex;
+}
+.like-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.1);
+}
+
+.like-btn i {
+  color: #888;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.like-btn.liked i {
+  color: red;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-box {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-box h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #111;
+}
+
+.footer-box h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.footer-box p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.footer-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.8;
+}
+
+.footer-box ul li a {
+  text-decoration: none;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.footer-box ul li a:hover {
+  color: #ffcc00;
+}
+
+.footer-box form {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.footer-box form input[type="email"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  font-size: 14px;
+}
+
+.footer-box form button {
+  padding: 10px 16px;
+  border: none;
+  background: #111;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.footer-box form button:hover {
+  background: #ffcc00;
+  color: black;
+}
+
+.social-links a {
+  margin: 0 6px;
+  color: #555;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #ffcc00;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #777;
+  border-top: 1px solid #ddd;
+  padding-top: 12px;
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-box form {
+    flex-direction: column;
+  }
+  .footer-box form input[type="email"] {
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  .footer-box form button {
+    border-radius: 5px;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="offer-marquee">
+    <div class="offer-text">
+      🎉 Free Shipping On All Orders! | All Products Are Ready To Dispatch! 🎉
+    </div>
+  </div>
+  
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black my-5 p-4">
+    <div class="container-fluid">
+
+      
+      <a class="navbar-brand" href="#">aarclo.in</a>
+
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="d-flex">
+       <div class="search-wrapper d-flex align-items-center">
+  <input type="search" id="gsearch" class="form-control me-2" placeholder="Search..." />
+
+
+  <a href="#" id="searchToggle" class="nav-link text-white">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </a>
+</div>
+        <a href="wishlist.html" class="nav-link text-white"><i class="fa-solid fa-heart"></i></a>
+        <a href="cart.html" class="nav-link"><i class="fa-solid fa-cart-shopping"></i></a>
+        <div class="d-flex">
+      <!-- Account Icon (links to Sign In page) -->
+      <a href="signin.html" class="nav-link">
+        <i class="fa-solid fa-user "></i>
+      </a>
+    </div>
+      </div>
+    </div>
+  </nav>
+<br><br>
+  <div style="display:flex; justify-content:center;">
+  <h3 class="categories-title">CATEGORIES</h3>
+</div>
+  <p class="categories-subtitle">Explore our exclusive collections for women</p>
+
+  <div class="categories-row">
+
+    <div class="category-card">
+      <img src="coordset.jpg" alt="Co-ord Set">
+      <h5 class="card-title">CO-ORD SET</h5>
+      <a href="coord-sets.html"><button>VIEW ALL</button></a>
+    </div>
+
+    <div class="category-card">
+      <img src="kurthiset.jpg" alt="Kurti Set">
+      <h5 class="card-title">KURTI SET</h5>
+      <a href="kurti-sets.html"><button>VIEW ALL</button></a>
+    </div>
+
+    <div class="category-card">
+      <img src="dresses.jpg" alt="Dresses">
+      <h5 class="card-title">DRESSES</h5>
+      <a href="dresses.html"><button>VIEW ALL</button></a>
+    </div>
+
+  </div>
+  <br><br>
+
+
+ <footer class="site-footer">
+  <div class="footer-container">
+    
+    <!-- Brand / About -->
+    <div class="footer-box">
+      <h2>aarclo.in</h2>
+      <p>
+        Elegant <b>Kurtas</b>, <b>Co-ord Sets</b>, and <b>Dresses</b> designed for modern women.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="categories.html">Shop</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Customer Care -->
+    <div class="footer-box">
+      <h3>Customer Care</h3>
+      <ul>
+        <li><a href="shipping policy.html">Shipping Policy</a></li>
+        <li><a href="return&exchange.html">Returns & Exchanges</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="trackorder.html">Track Order</a></li>
+      </ul>
+    </div>
+
+    <!-- Stay Connected -->
+    <div class="footer-box">
+      <h3>Stay Connected</h3>
+      <form>
+        <input type="email" placeholder="Enter your email">
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 aarclo.in | All Rights Reserved</p>
+  </div>
+</footer>
+<br><br>
+
+<script>
+  document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      const card = this.closest('.card');
+      const imgSrc = card.querySelector('img').getAttribute('src');
+      const title = card.querySelector('img').getAttribute('alt');
+      const price = card.querySelector('.price').textContent;
+
+      const item = {
+        img: imgSrc,
+        title: title,
+        price: price,
+        quantity: 1
+      };
+
+      // Get existing cart or create new one
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Check if item already exists
+      const index = cart.findIndex(i => i.title === item.title);
+      if (index > -1) {
+        cart[index].quantity += 1;
+      } else {
+        cart.push(item);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      // Optional animation to cart icon
+      const img = card.querySelector('img');
+      const flyingImg = img.cloneNode(true);
+      const imgRect = img.getBoundingClientRect();
+      const cartIcon = document.querySelector('.fa-cart-shopping');
+      const cartRect = cartIcon.getBoundingClientRect();
+
+      flyingImg.style.position = 'fixed';
+      flyingImg.style.left = imgRect.left + 'px';
+      flyingImg.style.top = imgRect.top + 'px';
+      flyingImg.style.width = imgRect.width + 'px';
+      flyingImg.style.height = imgRect.height + 'px';
+      flyingImg.style.zIndex = 1000;
+      flyingImg.style.transition = 'all 1s ease-in-out';
+      flyingImg.style.pointerEvents = 'none';
+      document.body.appendChild(flyingImg);
+
+      requestAnimationFrame(() => {
+        flyingImg.style.left = cartRect.left + 'px';
+        flyingImg.style.top = cartRect.top + 'px';
+        flyingImg.style.width = '30px';
+        flyingImg.style.height = '30px';
+        flyingImg.style.opacity = '0.5';
+      });
+
+      flyingImg.addEventListener('transitionend', () => {
+        flyingImg.remove();
+      });
+    });
+  });
+</script>
+
+
+
+
+<script>
+  const toggle = document.getElementById("searchToggle");
+  const input = document.getElementById("gsearch");
+
+  // Show/Hide search input on toggle click
+  toggle.addEventListener("click", function (e) {
+    e.preventDefault();
+    input.classList.toggle("show");
+    if (input.classList.contains("show")) {
+      input.focus();
+    }
+  });
+
+  // Hide input when clicking outside
+  document.addEventListener("click", function (event) {
+    if (!input.contains(event.target) && !toggle.contains(event.target)) {
+      input.classList.remove("show");
+    }
+  });
+
+  // Product-specific routes
+  const routes = {
+    "kurti set": "kurti-sets.html",
+    "coord set": "coord-sets.html",
+    
+    "dress": "dresses.html"
+    // 👉 Add more mappings as needed
+  };
+
+  // Handle Enter key press
+  input.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault(); // prevent accidental form submission
+      const query = input.value.trim().toLowerCase();
+      if (!query) return;
+
+      // Check product routes
+      for (let keyword in routes) {
+        if (query.includes(keyword)) {
+          window.location.href = routes[keyword];
+          return;
+        }
+      }
+
+      // Default: go to search results page
+      window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+    }
+  });
+
+  // Close input on Escape key
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      input.classList.remove("show");
+      input.blur();
+    }
+  });
+</script>
+
+<script>
+  document.querySelectorAll('.like-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      this.classList.toggle('liked');
+      const card = this.closest('.card');
+
+      const item = {
+        img: card.querySelector("img").getAttribute("src"),
+        title: card.querySelector(".card-title") 
+                ? card.querySelector(".card-title").textContent 
+                : card.querySelector("img").getAttribute("alt"),
+        price: card.querySelector(".price").textContent
+      };
+
+      let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+      if (this.classList.contains('liked')) {
+        // Add if not already in wishlist
+        if (!wishlist.some(i => i.title === item.title)) {
+          wishlist.push(item);
+        }
+      } else {
+        // Remove if unliked
+        wishlist = wishlist.filter(i => i.title !== item.title);
+      }
+
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

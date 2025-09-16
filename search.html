@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Search Results</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    #results > div {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    #results > div:hover {
+      background-color: #f0f0f0;
+    }
+    .no-results {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Search Results</h1>
+  <div id="results"></div>
+
+  <script>
+    // Function to get URL query parameter 'q'
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Sample product data (replace this with your real product data or API)
+    const products = [
+      { id: 1, name: 'Red Kurti Set' },
+      { id: 2, name: 'Blue Kurti Set' },
+      { id: 3, name: 'Green Kurti Set' },
+      { id: 4, name: 'Yellow Dress' },
+      { id: 5, name: 'Pink Kurti Set' },
+      { id: 6, name: 'Orange Kurti Set' }
+    ];
+
+    const query = getQueryParam('q');
+    const resultsDiv = document.getElementById('results');
+
+    if (!query) {
+      resultsDiv.innerHTML = '<p>Please enter a search query.</p>';
+    } else {
+      // Case-insensitive search for products matching the query
+      const filtered = products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
+
+      if (filtered.length === 0) {
+        resultsDiv.innerHTML = `<p class="no-results">No results found for "<strong>${query}</strong>"</p>`;
+      } else {
+        resultsDiv.innerHTML = filtered.map(p => `<div>${p.name}</div>`).join('');
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Track Order</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f2ee;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .track-card {
+      background-color: #fff;
+      max-width: 700px;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      line-height: 1.8;
+      color: #444;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .track-card h1 {
+      font-size: 30px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+
+    .track-card input {
+      width: 70%;
+      padding: 12px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .track-card button {
+      padding: 12px 20px;
+      background-color: #111;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+
+    .track-card button:hover {
+      background-color: #333;
+    }
+
+    .track-card p {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    /* Back button style */
+    .back-btn {
+      display: block;
+      width: fit-content;
+      margin: 30px auto 0; /* bottom center */
+      padding: 12px 24px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    .back-btn:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="track-card">
+    <h1>📍 Track Your Order</h1>
+    <input type="text" placeholder="Enter your Order ID">
+    <button>Track</button>
+    <p>Enter your Order ID to check the status of your delivery.</p>
+
+    <!-- Back Button at bottom -->
+    <a href="javascript:history.back()" class="back-btn">⬅ Back</a>
+  </div>
+
+</body>
+</html>

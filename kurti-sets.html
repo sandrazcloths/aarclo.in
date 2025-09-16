@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+
+  <style>
+    
+  
+    .offer-marquee {
+      width: 100%;
+      background-color: #ffcc00;
+      overflow: hidden;
+      white-space: nowrap;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      color: #000;
+    }
+    .offer-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 15s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .navbar-brand {
+  font-size: 60px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar i {
+  font-size: 30px;
+  margin: 0 10px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.navbar i:hover {
+  color: #ffcc00;
+}
+
+.navbar .d-flex a {
+  padding: 5px 8px;
+}
+
+.nav-link.active {
+  color: #ffcc00 !important;
+  font-weight: bold;
+}
+
+/* Responsive Navbar */
+@media (max-width: 992px) {
+  .navbar-brand {
+    font-size: 42px;
+  }
+  .navbar i {
+    font-size: 22px;
+    margin: 0 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 32px;
+  }
+  .navbar i {
+    font-size: 18px;
+  }
+  .offer-marquee {
+    font-size: 12px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 26px;
+  }
+  .navbar i {
+    font-size: 16px;
+  }
+}
+    
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+}
+
+
+
+
+.price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+#gsearch {
+  transition: width 0.4s ease, opacity 0.3s ease;
+  border-radius: 5px;
+  padding: 6px 10px;
+  font-size: 15px;
+  height: 35px;
+  background: white;
+  color: black;
+  border: 1px solid #ccc;
+  max-width: 200px;
+  display: none;
+}
+#gsearch.show {
+  width: 200px;
+  opacity: 1;
+  pointer-events: auto;
+  display: flex;
+}
+.like-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.1);
+}
+
+.like-btn i {
+  color: #888;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.like-btn.liked i {
+  color: red;
+}
+.card img {
+  height: 250px;         
+  width: 100%;           
+  object-fit: contain;   /* ✅ keeps whole image visible */
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+
+.footer-container {
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-box {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-box h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #111;
+}
+
+.footer-box h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.footer-box p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.footer-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.8;
+}
+
+.footer-box ul li a {
+  text-decoration: none;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.footer-box ul li a:hover {
+  color: #ffcc00;
+}
+
+.footer-box form {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.footer-box form input[type="email"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  font-size: 14px;
+}
+
+.footer-box form button {
+  padding: 10px 16px;
+  border: none;
+  background: #111;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.footer-box form button:hover {
+  background: #ffcc00;
+  color: black;
+}
+
+.social-links a {
+  margin: 0 6px;
+  color: #555;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #ffcc00;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #777;
+  border-top: 1px solid #ddd;
+  padding-top: 12px;
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-box form {
+    flex-direction: column;
+  }
+  .footer-box form input[type="email"] {
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  .footer-box form button {
+    border-radius: 5px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="offer-marquee">
+    <div class="offer-text">
+      🎉 Free Shipping On All Orders! | All Products Are Ready To Dispatch! |COD Available!  🎉
+    </div>
+  </div>
+  
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black my-5 p-4">
+    <div class="container-fluid">
+
+      
+      <a class="navbar-brand" href="#">aarclo.in</a>
+
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="d-flex">
+       <div class="search-wrapper d-flex align-items-center">
+  <input type="search" id="gsearch" class="form-control me-2" placeholder="Search..." />
+
+
+  <a href="#" id="searchToggle" class="nav-link text-white">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </a>
+</div>
+<a href="wishlist.html" class="nav-link text-white"><i class="fa-solid fa-heart"></i></a>
+
+<a href="cart.html" class="nav-link text-white"><i class="fa-solid fa-cart-shopping"></i></a>
+       <div class="d-flex">
+      <!-- Account Icon (links to Sign In page) -->
+      <a href="signin.html" class="nav-link">
+        <i class="fa-solid fa-user "></i>
+      </a>
+    </div>
+      </div>
+    </div>
+  </nav>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  
+
+  
+  
+  <div class="container my-5">
+  <div class="row g-4">
+    <!-- Product Cards with data attributes -->
+    <!-- Product 1 -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card h-100 shadow-sm text-center position-relative"
+           data-title="Peony Bloom Kurti"
+           data-price="Rs.850.00"
+           data-img="kurti1.jpg"
+           data-description="Elegant Peony Bloom Kurti made of cotton blend. Perfect for casual and festive occasions.">
+        <img src="kurti1.jpg" class="card-img-top" alt="Peony Bloom Kurti">
+        <button class="like-btn"><i class="fa-solid fa-heart"></i></button>
+        <div class="card-body">
+          <h6 class="card-title">Peony Bloom Kurti</h6>
+          <p class="price">Rs.850.00</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat for products 2-8 -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card h-100 shadow-sm text-center position-relative"
+           data-title="Redbell Handblock Kurti"
+           data-price="Rs.950.00"
+           data-img="kurti2.jpg"
+           data-description="Redbell Handblock Kurti made of premium cotton. Perfect for daily wear and festive occasions. ">
+        <img src="kurti2.jpg" class="card-img-top" alt="Redbell Handblock Kurti">
+        <button class="like-btn"><i class="fa-solid fa-heart"></i></button>
+        <div class="card-body">
+          <h6 class="card-title">Redbell Handblock Kurti</h6>
+          <p class="price">Rs.950.00</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card h-100 shadow-sm text-center position-relative"
+           data-title="Kiara Red Kurti"
+           data-price="Rs.900.00"
+           data-img="kurti3.jpg"
+           data-description="Kiara Red Kurti with floral prints, lightweight cotton fabric. Ideal for casual outings. ">
+        <img src="kurti3.jpg" class="card-img-top" alt="Kiara Red Kurti">
+        <button class="like-btn"><i class="fa-solid fa-heart"></i></button>
+        <div class="card-body">
+          <h6 class="card-title">Kiara Red Kurti</h6>
+          <p class="price">Rs.900.00</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card h-100 shadow-sm text-center position-relative"
+           data-title="Florette Kurti"
+           data-price="Rs.1,190.00"
+           data-img="kurti4.jpg"
+           data-description="Florette Kurti with elegant embroidery, soft cotton blend. Perfect for parties and casual events.">
+        <img src="kurti4.jpg" class="card-img-top" alt="Florette Kurti">
+        <button class="like-btn"><i class="fa-solid fa-heart"></i></button>
+        <div class="card-body">
+          <h6 class="card-title">Florette Kurti</h6>
+          <p class="price">Rs.1,190.00</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card h-100 shadow-sm text-center position-relative"
+           data-title="Lidiya Kurti"
+           data-price="Rs.970.00"
+           data-img="kurti5.jpg"
+           data-description="Lidiya Kurti crafted from premium cotton. Comfortable for daily wear and casual events.">
+        <img src="kurti5.jpg" class="card-img-top" alt="Lidiya Kurti">
+        <button class="like-btn"><i class="fa-solid fa-heart"></i></button>
+        <div class="card-body">
+          <h6 class="card-title">Lidiya Kurti</h6>
+          <p class="price">Rs.970.00</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card h-100 shadow-sm text-center position-relative"
+           data-title="Golden Phool Kurti"
+           data-price="Rs.1,300.00"
+           data-img="kurti6.jpg"
+           data-description="Golden Phool Kurti with golden thread embroidery, perfect for festive occasions.">
+        <img src="kurti6.jpg" class="card-img-top" alt="Golden Phool Kurti">
+        <button class="like-btn"><i class="fa-solid fa-heart"></i></button>
+        <div class="card-body">
+          <h6 class="card-title">Golden Phool Kurti</h6>
+          <p class="price">Rs.1,300.00</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 7 -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card h-100 shadow-sm text-center position-relative"
+           data-title="Sophia Wine Kurti"
+           data-price="Rs.900.00"
+           data-img="kurti7.jpg"
+           data-description="Sophia Wine Kurti made from soft cotton with hand-printed motifs. Ideal for casual gatherings.">
+        <img src="kurti7.jpg" class="card-img-top" alt="Sophia Wine Kurti">
+        <button class="like-btn"><i class="fa-solid fa-heart"></i></button>
+        <div class="card-body">
+          <h6 class="card-title">Sophia Wine Kurti</h6>
+          <p class="price">Rs.900.00</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 8 -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card h-100 shadow-sm text-center position-relative"
+           data-title="Rossy kurti"
+           data-price="Rs.1,450.00"
+           data-img="kurti8.jpg"
+           data-description="Rossy Kurti with intricate embroidery and premium fabric. Ideal for parties and formal events.">
+        <img src="kurti8.jpg" class="card-img-top" alt="Rossy kurti">
+        <button class="like-btn"><i class="fa-solid fa-heart"></i></button>
+        <div class="card-body">
+          <h6 class="card-title">Rossy Kurti</h6>
+          <p class="price">Rs.1,450.00</p>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Product Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body d-flex flex-column flex-md-row gap-4">
+        <img id="modalImage" src="" alt="" class="img-fluid" style="max-width: 300px; object-fit: contain;">
+        <div>
+          <h4 id="modalPrice"></h4>
+          <p id="modalDescription"></p>
+
+          <label for="modalSize" class="form-label mt-2">Select Size:</label>
+          <select id="modalSize" class="form-select mb-3">
+            <option value="" disabled selected>Choose size</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+          </select>
+
+          <button id="modalAddToCart" class="btn btn-primary mt-2">Add to Cart</button>
+          <button id="modalAddToWishlist" class="btn btn-outline-danger mt-2 ms-2">Add to Wishlist</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<footer class="site-footer">
+  <div class="footer-container">
+    
+    <!-- Brand / About -->
+    <div class="footer-box">
+      <h2>aarclo.in</h2>
+      <p>
+        Elegant <b>Kurtas</b>, <b>Co-ord Sets</b>, and <b>Dresses</b> designed for modern women.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="categories.html">Shop</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Customer Care -->
+    <div class="footer-box">
+      <h3>Customer Care</h3>
+      <ul>
+        <li><a href="shipping policy.html">Shipping Policy</a></li>
+        <li><a href="return&exchange.html">Returns & Exchanges</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="trackorder.html">Track Order</a></li>
+      </ul>
+    </div>
+
+    <!-- Stay Connected -->
+    <div class="footer-box">
+      <h3>Stay Connected</h3>
+      <form>
+        <input type="email" placeholder="Enter your email">
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 aarclo.in | All Rights Reserved</p>
+  </div>
+</footer>
+
+
+<script>
+  document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      const card = this.closest('.card');
+      const imgSrc = card.querySelector('img').getAttribute('src');
+      const title = card.querySelector('img').getAttribute('alt');
+      const price = card.querySelector('.price').textContent;
+
+      const item = {
+        img: imgSrc,
+        title: title,
+        price: price,
+        quantity: 1
+      };
+
+      // Get existing cart or create new one
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Check if item already exists
+      const index = cart.findIndex(i => i.title === item.title);
+      if (index > -1) {
+        cart[index].quantity += 1;
+      } else {
+        cart.push(item);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      // Optional animation to cart icon
+      const img = card.querySelector('img');
+      const flyingImg = img.cloneNode(true);
+      const imgRect = img.getBoundingClientRect();
+      const cartIcon = document.querySelector('.fa-cart-shopping');
+      const cartRect = cartIcon.getBoundingClientRect();
+
+      flyingImg.style.position = 'fixed';
+      flyingImg.style.left = imgRect.left + 'px';
+      flyingImg.style.top = imgRect.top + 'px';
+      flyingImg.style.width = imgRect.width + 'px';
+      flyingImg.style.height = imgRect.height + 'px';
+      flyingImg.style.zIndex = 1000;
+      flyingImg.style.transition = 'all 1s ease-in-out';
+      flyingImg.style.pointerEvents = 'none';
+      document.body.appendChild(flyingImg);
+
+      requestAnimationFrame(() => {
+        flyingImg.style.left = cartRect.left + 'px';
+        flyingImg.style.top = cartRect.top + 'px';
+        flyingImg.style.width = '30px';
+        flyingImg.style.height = '30px';
+        flyingImg.style.opacity = '0.5';
+      });
+
+      flyingImg.addEventListener('transitionend', () => {
+        flyingImg.remove();
+      });
+    });
+  });
+</script>
+
+
+
+
+<script>
+  const toggle = document.getElementById("searchToggle");
+  const input = document.getElementById("gsearch");
+
+  // Show/Hide search input on toggle click
+  toggle.addEventListener("click", function (e) {
+    e.preventDefault();
+    input.classList.toggle("show");
+    if (input.classList.contains("show")) {
+      input.focus();
+    }
+  });
+
+  // Hide input when clicking outside
+  document.addEventListener("click", function (event) {
+    if (!input.contains(event.target) && !toggle.contains(event.target)) {
+      input.classList.remove("show");
+    }
+  });
+
+  // Product-specific routes
+  const routes = {
+    "kurti set": "kurti-sets.html",
+    "coord set": "coord-sets.html",
+    
+    "dress": "dresses.html"
+    // 👉 Add more mappings as needed
+  };
+
+  // Handle Enter key press
+  input.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault(); // prevent accidental form submission
+      const query = input.value.trim().toLowerCase();
+      if (!query) return;
+
+      // Check product routes
+      for (let keyword in routes) {
+        if (query.includes(keyword)) {
+          window.location.href = routes[keyword];
+          return;
+        }
+      }
+
+      // Default: go to search results page
+      window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+    }
+  });
+
+  // Close input on Escape key
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      input.classList.remove("show");
+      input.blur();
+    }
+  });
+</script>
+
+
+<script>
+  document.querySelectorAll('.like-btn').forEach(button => {
+    button.addEventListener('click', function () {
+      this.classList.toggle('liked');
+      const card = this.closest('.card');
+
+      const item = {
+        img: card.querySelector("img").getAttribute("src"),
+        title: card.querySelector(".card-title") 
+                ? card.querySelector(".card-title").textContent 
+                : card.querySelector("img").getAttribute("alt"),
+        price: card.querySelector(".price").textContent
+      };
+
+      let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+      if (this.classList.contains('liked')) {
+        // Add if not already in wishlist
+        if (!wishlist.some(i => i.title === item.title)) {
+          wishlist.push(item);
+        }
+      } else {
+        // Remove if unliked
+        wishlist = wishlist.filter(i => i.title !== item.title);
+      }
+
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    });
+  });
+</script>
+
+<script>
+const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+const modalTitle = document.getElementById('modalTitle');
+const modalImage = document.getElementById('modalImage');
+const modalPrice = document.getElementById('modalPrice');
+const modalDescription = document.getElementById('modalDescription');
+const modalSize = document.getElementById('modalSize');
+const modalAddToCart = document.getElementById('modalAddToCart');
+const modalAddToWishlist = document.getElementById('modalAddToWishlist');
+
+// Open modal on card click
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    if (e.target.closest('.like-btn') || e.target.closest('.add-to-cart-btn')) return;
+
+    const title = card.dataset.title;
+    const price = card.dataset.price;
+    const img = card.dataset.img;
+    const desc = card.dataset.description;
+
+    modalTitle.textContent = title;
+    modalImage.src = img;
+    modalImage.alt = title;
+    modalPrice.textContent = price;
+    modalDescription.textContent = desc;
+    modalSize.value = "";
+
+    productModal.show();
+
+    modalAddToCart.onclick = () => {
+      const size = modalSize.value;
+      if (!size) { alert("Please select a size."); return; }
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const index = cart.findIndex(i => i.title === title && i.size === size);
+      if (index > -1) cart[index].quantity += 1;
+      else cart.push({img, title, price, size, quantity:1});
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${title} (${size}) added to cart!`);
+    };
+
+    modalAddToWishlist.onclick = () => {
+      const size = modalSize.value;
+      if (!size) { alert("Please select a size."); return; }
+      let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      if (!wishlist.some(i => i.title === title && i.size === size)) wishlist.push({img, title, price, size});
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      alert(`${title} (${size}) added to wishlist!`);
+    };
+  });
+});
+
+// Open modal on card click
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    if (e.target.closest('.like-btn') || e.target.closest('.add-to-cart-btn')) return;
+
+    const title = card.dataset.title;
+    const price = card.dataset.price;
+    const img = card.dataset.img;
+    const desc = card.dataset.description;
+
+    modalTitle.textContent = title;
+    modalImage.src = img;
+    modalImage.alt = title;
+    modalPrice.textContent = price;
+    modalDescription.textContent = desc;
+    modalSize.value = "";
+
+    // Sync modal wishlist button
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const inWishlist = wishlist.some(i => i.title === title);
+    modalAddToWishlist.classList.toggle('liked', inWishlist);
+    modalAddToWishlist.textContent = inWishlist ? "Added to Wishlist" : "Add to Wishlist";
+
+    productModal.show();
+
+    // Add to Cart
+    modalAddToCart.onclick = () => {
+      const size = modalSize.value;
+      if (!size) { alert("Please select a size."); return; }
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const index = cart.findIndex(i => i.title === title && i.size === size);
+      if (index > -1) cart[index].quantity += 1;
+      else cart.push({img, title, price, size, quantity:1});
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${title} (${size}) added to cart!`);
+    };
+
+    // Add/Remove from Wishlist
+    modalAddToWishlist.onclick = () => {
+      const size = modalSize.value || "N/A"; // optional for modal wishlist
+      let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      const index = wishlist.findIndex(i => i.title === title);
+
+      if (index > -1) {
+        // Remove from wishlist
+        wishlist.splice(index, 1);
+        modalAddToWishlist.classList.remove('liked');
+        modalAddToWishlist.textContent = "Add to Wishlist";
+      } else {
+        // Add to wishlist
+        wishlist.push({img, title, price, size});
+        modalAddToWishlist.classList.add('liked');
+        modalAddToWishlist.textContent = "Added to Wishlist";
+      }
+
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+      // Sync card heart
+      const cardHeart = card.querySelector('.like-btn');
+      cardHeart.classList.toggle('liked', wishlist.some(i => i.title === title));
+    };
+  });
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
